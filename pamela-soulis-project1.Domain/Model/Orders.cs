@@ -14,7 +14,7 @@ namespace pamela_soulis_project1.Domain.Model
         public int LocationId { get; set; }
         public int CustomerId { get; set; }
         public DateTime Date { get; set; }
-        public TimeSpan Time { get; set; }
+       
 
 
         public List<OrderLine> OrderLine { get; set; } = new List<OrderLine>();

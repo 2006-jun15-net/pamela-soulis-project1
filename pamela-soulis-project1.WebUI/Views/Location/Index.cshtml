@@ -1,0 +1,23 @@
+﻿@model IEnumerable<pamela_soulis_project1.Domain.Model.Location>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Index</h1>
+<table class=" = " table">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var place in Model)
+        {
+            <tr>
+                <td>@place.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

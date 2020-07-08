@@ -17,16 +17,17 @@ namespace pamela_soulis_project1.WebUI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly LocationRepository _locationRepo;
-        private readonly CustomerRepository _customerRepo;
+        //private readonly LocationRepository _locationRepo;
+        //private readonly CustomerRepository _customerRepo;
         
         
 
         //public HomeController(LocationRepository locrepo, ILogger<HomeController> logger)
-        public HomeController(CustomerRepository crepo, ILogger<HomeController> logger)
+        //public HomeController(CustomerRepository crepo, ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger)
         {
             // _locationRepo = locrepo;
-            _customerRepo = crepo;
+           // _customerRepo = crepo;
             _logger = logger;
         }
 
@@ -41,36 +42,38 @@ namespace pamela_soulis_project1.WebUI.Controllers
             //});
 
             //return View(viewModel);
-            return View(_customerRepo.GetAll());
-           // return View(_locationRepo.GetAll());
-        }
-
-        [HttpGet]
-        public IActionResult AddACustomer()
-        {
+            //return View(_customerRepo.GetAll());
+            // return View(_locationRepo.GetAll());
             return View();
         }
 
-        [HttpPost]
-        public IActionResult AddACustomer(IFormCollection formData)
-        {
+        //[HttpGet]
+        //public IActionResult AddACustomer()
+        //{
+        //    return View();
+        //}
 
-            //need to validate the data : make sure it's not null, etc
-            try
-            {
-                var customer = new Customer(formData["FirstName"], formData["LastName"]);
-                _customerRepo.Insert(customer);
-                _customerRepo.SaveToDB();
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception)
-            {
-                ModelState.AddModelError("", "there was some error, try again");
-                return View();
-            }
+        //[HttpPost]
+        //public IActionResult AddACustomer(IFormCollection formData)
+        //{
+
+        //    //need to validate the data : make sure it's not null, etc
+        //    try
+        //    {
+        //        var customer = new Customer(formData["FirstName"], formData["LastName"]);
+        //        _customerRepo.Insert(customer);
+        //        _customerRepo.SaveToDB();
+
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch (Exception)
+        //    {
+        //        ModelState.AddModelError("", "there was some error, try again");
+        //        return View();
+        //    }
             
-        }
+        //}
 
 
 

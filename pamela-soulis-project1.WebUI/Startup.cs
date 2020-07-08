@@ -30,8 +30,10 @@ namespace pamela_soulis_project1.WebUI
             services.AddDbContext<pamelasoulisproject1Context>(Options =>
                 Options.UseSqlServer(Configuration.GetConnectionString("pamelasoulisproject1Context")));
 
-            //services.AddScoped<LocationRepository>();
+            services.AddScoped<LocationRepository>();
             services.AddScoped<CustomerRepository>();
+            services.AddScoped<ProductRepository>();
+
 
             services.AddControllersWithViews();
         }

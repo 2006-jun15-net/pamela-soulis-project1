@@ -99,6 +99,7 @@ ALTER TABLE Inventory
 
 
 SELECT * FROM Customer;
+SELECT * FROM Orders;
 SELECT * FROM Location;
 SELECT * FROM Product;
 SELECT * FROM Location;
