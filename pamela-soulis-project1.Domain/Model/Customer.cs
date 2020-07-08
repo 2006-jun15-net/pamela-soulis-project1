@@ -12,6 +12,13 @@ namespace pamela_soulis_project1.Domain.Model
         private string _firstname;
         private string _lastname;
 
+        public Customer(string _firstname, string _lastname)
+        {
+            FirstName = _firstname;
+            LastName = _lastname;
+        }
+
+
 
         /// <summary>
         /// Customer has a firstname

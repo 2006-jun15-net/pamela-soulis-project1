@@ -1,4 +1,4 @@
-﻿@model IEnumerable<pamela_soulis_project1.Domain.Model.Location>
+﻿@model IEnumerable<pamela_soulis_project1.Domain.Model.Customer>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -14,10 +14,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var location in Model)
+            @foreach (var person in Model)
             {
             <tr>
-                <td>@location.Name</td>
+                <td>@person.FirstName</td>
+                <td>@person.LastName</td>
             </tr>
             }
         </tbody>

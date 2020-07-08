@@ -10,28 +10,30 @@ using pamela_soulis_project1.WebUI.Models;
 //using pamela_soulis_project1.WebUI.ViewModels;
 using pamela_soulis_project1.DataAccess.Model;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Http;
 
 namespace pamela_soulis_project1.WebUI.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        //private readonly LocationRepository _locationRepo;
-        //public static pamelasoulisproject1Context context = new pamelasoulisproject1Context(options);
-        private readonly pamelasoulisproject1Context _context;
+        private readonly LocationRepository _locationRepo;
+        private readonly CustomerRepository _customerRepo;
+        
+        
 
-        //public HomeController(LocationRepository locationRepo, ILogger<HomeController> logger)
-        public HomeController(pamelasoulisproject1Context context, ILogger<HomeController> logger)
+        //public HomeController(LocationRepository locrepo, ILogger<HomeController> logger)
+        public HomeController(CustomerRepository crepo, ILogger<HomeController> logger)
         {
-            // _locationRepo = locationRepo;
-            _context = context;
+            // _locationRepo = locrepo;
+            _customerRepo = crepo;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
 
-            LocationRepository locrepo = new LocationRepository(_context);
+            //LocationRepository locrepo = new LocationRepository(_context);
 
             //var viewModel = _locationRepo.GetAll().Select(l => new LocationViewModel
             //{
@@ -39,9 +41,38 @@ namespace pamela_soulis_project1.WebUI.Controllers
             //});
 
             //return View(viewModel);
-
-            return View(locrepo.GetAll());
+            return View(_customerRepo.GetAll());
+           // return View(_locationRepo.GetAll());
         }
+
+        [HttpGet]
+        public IActionResult AddACustomer()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddACustomer(IFormCollection formData)
+        {
+
+            //need to validate the data : make sure it's not null, etc
+            try
+            {
+                var customer = new Customer(formData["FirstName"], formData["LastName"]);
+                _customerRepo.Insert(customer);
+                _customerRepo.SaveToDB();
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "there was some error, try again");
+                return View();
+            }
+            
+        }
+
+
 
         public IActionResult Privacy()
         {
