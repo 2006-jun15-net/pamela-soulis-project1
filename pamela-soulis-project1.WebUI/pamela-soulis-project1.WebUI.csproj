@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>pamela_soulis_project1.WebUI</RootNamespace>
+    <UserSecretsId>752b0ae1-d140-4865-b3c0-fe0106f5d877</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\pamela-soulis-project1.DataAccess\pamela-soulis-project1.DataAccess.csproj" />
+    <ProjectReference Include="..\pamela-soulis-project1.Domain\pamela-soulis-project1.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

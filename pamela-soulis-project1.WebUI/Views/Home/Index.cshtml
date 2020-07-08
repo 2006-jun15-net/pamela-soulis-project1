@@ -1,0 +1,26 @@
+﻿@model IEnumerable<pamela_soulis_project1.Domain.Model.Location>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    
+    <table class=" = "table">
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var location in Model)
+            {
+            <tr>
+                <td>@location.Name</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
