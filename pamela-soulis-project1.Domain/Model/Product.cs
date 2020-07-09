@@ -26,7 +26,7 @@ namespace pamela_soulis_project1.Domain.Model
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Customer firstname cannot be empty or null.", nameof(value));
+                    throw new ArgumentException("Product name cannot be empty or null.", nameof(value));
                 }
                 _name = value;
             }

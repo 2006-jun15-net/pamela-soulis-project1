@@ -48,5 +48,26 @@ namespace pamela_soulis_project1.Domain.Repositories
             var theOrderToBeAdded = new Orders { CustomerId = customerId, LocationId = locationId, Date = orderDate };
             return theOrderToBeAdded;
         }
+
+        //var businessCustomer = mapper.Map<Customer>(customer);
+
+
+        public void AddOrder(Orders order, Domain.Model.Customer customer, Domain.Model.Location location)
+        {
+            //if (customer != null & location != null)
+            //{
+
+            //}
+            var orderDate = DateTime.Today;
+            var orderEntity = new Orders { CustomerId = customer.CustomerId, LocationId = location.LocationId, Date = orderDate };
+            _context.Orders.Add(orderEntity);
+        }
+
+        //public void AddCustomer(Customer customer)
+        //{
+        //    var entity = new Customer { FirstName = customer.FirstName, LastName = customer.LastName };
+        //    _context.Customer.Add(entity);
+
+        //}
     }
 }

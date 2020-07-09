@@ -10,6 +10,9 @@ namespace pamela_soulis_project1.Domain.Model
     public class Inventory : BaseBusinessModel
     {
 
+        private int _quantity; 
+
+
         /// <summary>
         /// Inventory associated to a particular store
         /// </summary>
@@ -26,8 +29,18 @@ namespace pamela_soulis_project1.Domain.Model
         /// <summary>
         /// The amount of that product the store has
         /// </summary>
-        public int Quantity { get; set; }
-
+        public int Quantity 
+        {
+            get => _quantity;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Product quantity cannot be negative.", nameof(value));
+                }
+                _quantity = value;
+            }
+        }
 
 
     }

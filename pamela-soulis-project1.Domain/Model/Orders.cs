@@ -5,7 +5,7 @@ using System.Text;
 namespace pamela_soulis_project1.Domain.Model
 {
     /// <summary>
-    /// Business Logic Orders, with an ID number and associated customer and location, and date/time that the order was placed on
+    /// Business Logic Orders, with an ID number and associated customer and location, and date that the order was placed on
     /// </summary>
     public class Orders : BaseBusinessModel
     {
