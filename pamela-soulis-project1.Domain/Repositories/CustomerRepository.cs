@@ -61,8 +61,16 @@ namespace pamela_soulis_project1.Domain.Repositories
         public Customer AddingANewCustomer(string customerfirstname, string customerlastname)
         {
             var theCustomerToBeAdded = new Customer { FirstName = customerfirstname, LastName = customerlastname };
-            return theCustomerToBeAdded;
+            //var businessCustomerToBeAdded = mapper.Map<Customer>(theCustomerToBeAdded);
+            return theCustomerToBeAdded; 
         }
 
+
+        public void AddCustomer(Customer customer)
+        {
+            var entity = new Customer { FirstName = customer.FirstName, LastName = customer.LastName };
+            _context.Customer.Add(entity);
+
+        }
     }
 }

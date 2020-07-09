@@ -15,7 +15,7 @@ namespace pamela_soulis_project1.Domain.Repositories
         where TDAL : DataModel, new()
         where TBLL : BaseBusinessModel, new()
     {
-        private pamelasoulisproject1Context _context = null;
+        protected pamelasoulisproject1Context _context = null;
         protected DbSet<TDAL> table = null;
         protected IMapper mapper;
 

@@ -1,0 +1,80 @@
+﻿@model pamela_soulis_project1.WebUI.ViewModels.LocationViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>LocationViewModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LocationId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LocationId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    @if (Model.Orders.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Orders.First().OrderId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Orders.First().CustomerId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Orders.First().LocationId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Orders.First().Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Orders.First().Date)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Orders)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LocationId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderLine.First().Quantity)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        <a asp-action="Index">Back to List</a>
+    </div>
