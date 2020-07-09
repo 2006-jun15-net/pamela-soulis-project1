@@ -34,17 +34,17 @@ namespace pamela_soulis_project1.WebUI.Controllers
 
         public ActionResult Details(int id)
         {
-            //var customer = _customerRepo.GetById(id);
+            
             var location = _locationRepo.GetOrderHistory(id);
             var viewModel = new LocationViewModel
             {
-                LocationId = location.LocationId, 
+                LocationId = location.LocationId,
                 Name = location.Name,
                 Orders = location.Orders.Select(y => new OrdersViewModel
                 {
                     OrderId = y.OrderId,
                     CustomerId = y.CustomerId,
-                    LocationId = y.LocationId, 
+                    LocationId = y.LocationId,
                     Date = y.Date,
                     OrderLine = y.OrderLine.Select(x => new OrderlineViewModel
                     {
@@ -56,9 +56,31 @@ namespace pamela_soulis_project1.WebUI.Controllers
 
                     }),
                 }),
+                
 
             };
             return View(viewModel);
+             
         }
+        public ActionResult InventoryDetails(int id)
+        {
+            var thelocation = _locationRepo.GetWithNavigations(id);
+            var theviewModel = new LocationViewModel
+            {
+                LocationId = thelocation.LocationId,
+                Name = thelocation.Name,
+                Inventory = thelocation.Inventory.Select(i => new InventoryViewModel
+                {
+                    LocationId = i.LocationId,
+                    ProductId = i.ProductId,
+                    Quantity = i.Quantity
+                }),
+            };
+            return View(theviewModel);
+
+        }
+        
+           
+
     }
 }

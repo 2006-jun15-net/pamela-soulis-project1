@@ -13,10 +13,12 @@ namespace pamela_soulis_project1.WebUI.ViewModels
         public int CustomerId { get; set; }
 
 
+        [StringLength(20, MinimumLength = 2)]
         [Required]
         public string FirstName { get; set; }
 
 
+        [StringLength(20, MinimumLength = 2)]
         [Required]
         public string LastName { get; set; }
 

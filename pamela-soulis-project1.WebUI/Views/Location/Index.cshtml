@@ -6,24 +6,27 @@
 
 
 <h1>Index</h1>
-<table class=" = " table">
-    <thead>
-        <tr>
-            <th>Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var place in Model)
-        {
+    <table class=" = " table">
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var place in Model)
+            {
             <tr>
                 <td>@place.LocationId</td>
                 <td>@place.Name</td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = place.LocationId, extraData = "extra" }) |
+                    @Html.ActionLink("Details", "Details", new { id = place.LocationId }) |
+                    @Html.ActionLink("InventoryDetails", "InventoryDetails", new { id = place.LocationId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = place.LocationId })
+                </td>
             </tr>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = place.LocationId, extraData = "extra" }) |
-                @Html.ActionLink("Details", "Details", new { id = place.LocationId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = place.LocationId })
-            </td>
-        }
+            }
         </tbody>
     </table>
+

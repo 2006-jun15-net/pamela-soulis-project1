@@ -13,7 +13,7 @@ namespace pamela_soulis_project1.Domain.Model
         /// <summary>
         /// Inventory associated to a particular store
         /// </summary>
-        public int LocationId { get; set; }
+        public int LocationId { get; set; } 
 
 
         /// <summary>

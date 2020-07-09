@@ -39,7 +39,7 @@ namespace pamela_soulis_project1.WebUI.Controllers
         // still need to display the product names and have the right title in the table over the quantity
         public ActionResult Details(int id)
         {
-            //var customer = _customerRepo.GetById(id);
+            
             var customer = _customerRepo.GetWithNavigations(id);
             var viewModel = new CustomerViewModel
             {
@@ -75,20 +75,32 @@ namespace pamela_soulis_project1.WebUI.Controllers
         }
 
         [HttpPost]
-        //public ActionResult Create(IFormCollection formData)
-        public ActionResult Create(CustomerViewModel viewModel)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind("FirstName, LastName")]CustomerViewModel viewModel)
         {
-            var customer = new Customer
+            try
             {
-                FirstName = viewModel.FirstName,
-                LastName = viewModel.LastName
-            };
-            _customerRepo.AddCustomer(customer);
-            _customerRepo.SaveToDB();
-            return RedirectToAction(nameof(Index));
-
+                if (ModelState.IsValid)
+                {
+                    var customer = new Customer
+                    {
+                        FirstName = viewModel.FirstName,
+                        LastName = viewModel.LastName
+                    };
+                    _customerRepo.AddCustomer(customer);
+                    _customerRepo.SaveToDB();
+                    return RedirectToAction(nameof(Index)); 
+                }
+                return View(viewModel);
+            }
+            catch
+            {
+                return View(viewModel);
+            }
             
         }
+
+
 
     }
 }

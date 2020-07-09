@@ -19,5 +19,7 @@ namespace pamela_soulis_project1.WebUI.ViewModels
 
         public IEnumerable<OrdersViewModel> Orders { get; set; }
 
+        public IEnumerable<InventoryViewModel> Inventory { get; set; } 
+
     }
 }
