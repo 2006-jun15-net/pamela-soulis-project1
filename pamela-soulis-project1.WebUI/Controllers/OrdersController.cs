@@ -44,25 +44,7 @@ namespace pamela_soulis_project1.WebUI.Controllers
         {
             try
             {
-                //if (ModelState.IsValid)
-                //{
-                //    return View(viewModel);
-                //}
-
-                //var customer = _customerRepo.GetById(viewModel.CustomerId);
-                //var location = _locationRepo.GetById(viewModel.LocationId);
-                //var order = new Orders
-                //{
-                //    OrderId = viewModel.OrderId,
-                //    Date = viewModel.Date
-                //};
-
-                // var theNewOrder = _ordersRepo.AddOrder(order, customer, location);
-                // _ordersRepo.Insert(theNewOrder);
-                // _ordersRepo.SaveToDB();
-                // return RedirectToAction(nameof(CustomerController.Details),
-                //    "Customer", new { id = viewModel.CustomerId }); 
-
+                
                 if (ModelState.IsValid)
                 {
                     var customer = _customerRepo.GetById(viewModel.CustomerId);
@@ -76,7 +58,7 @@ namespace pamela_soulis_project1.WebUI.Controllers
                     var theNewOrder = _ordersRepo.AddOrder(order, customer, location);
                     _ordersRepo.Insert(theNewOrder);
                     _ordersRepo.SaveToDB();
-                    return RedirectToAction(nameof(CustomerController.Details),
+                    return RedirectToAction(nameof(CustomerController.DetailsOfNewOrder),
                        "Customer", new { id = viewModel.CustomerId });
 
                 }

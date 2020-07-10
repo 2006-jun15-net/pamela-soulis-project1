@@ -57,12 +57,12 @@ namespace pamela_soulis_project1.WebUI.Controllers
                         Quantity = viewModel.Quantity 
                     };
 
-                    //var thisNewOrderId = _ordersRepo.NewOrder();
+                    var thisNewOrderId = _ordersRepo.NewOrder();
                     var theNewOrder = _orderlineRepo.AddingANewOrderLine(orderline, product, order);
                     _orderlineRepo.Insert(theNewOrder);
                     _orderlineRepo.SaveToDB();
-                    return RedirectToAction(nameof(ProductController.Index));
-
+                    return RedirectToAction(nameof(Index));
+                    
                 }
                 return View(viewModel);
 
@@ -73,5 +73,28 @@ namespace pamela_soulis_project1.WebUI.Controllers
             }
 
         }
+
+
+        public IActionResult Index()
+        {
+
+            return View(_orderlineRepo.GetAll());
+
+        }
+
+        //public ActionResult OrderlineDetailsOfNewOrder(int id)
+        //{
+
+        //    var orderline = _orderlineRepo.GetWithNavigations(id);
+        //    var viewModel = new OrderlineViewModel
+        //    {
+        //        OrderId = orderline.OrderId,
+        //        Product = orderline.Product,
+        //        Quantity = orderline.Quantity
+
+
+        //    };
+        //    return View(viewModel);
+        //}
     }
 }

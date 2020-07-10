@@ -19,6 +19,7 @@ namespace pamela_soulis_project1.WebUI.ViewModels
 
 
         [Display(Name = "Product ID")]
+        [Range(1, 4)]
         [Required]
         public int ProductId { get; set; }
 

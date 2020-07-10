@@ -31,17 +31,33 @@ namespace pamela_soulis_project1.Domain.Repositories
         /// <returns></returns>
         //public pamela_soulis_project1.Domain.Model.OrderLine AddingANewOrderLine(int orderid, Domain.Model.Product product, Domain.Model.OrderLine orderline)
         //{
-            
+
         //    var theOrderToBeAdded = new pamela_soulis_project1.Domain.Model.OrderLine { OrderId = orderid, ProductId = product.ProductId, Quantity = orderline.Quantity };
         //    return theOrderToBeAdded;
         //}
 
+
+
+        //this works! add an orderline: but, need to do it without 
         public pamela_soulis_project1.Domain.Model.OrderLine AddingANewOrderLine(Domain.Model.OrderLine orderline, Domain.Model.Product product, Domain.Model.Orders order)
         {
             //int thisNewOrderId = _orderRepo.NewOrder();
             var theOrderToBeAdded = new pamela_soulis_project1.Domain.Model.OrderLine { OrderId = order.OrderId, ProductId = product.ProductId, Quantity = orderline.Quantity };
             return theOrderToBeAdded;
         }
+
+         
+        public pamela_soulis_project1.Domain.Model.OrderLine GetWithNavigations(int orderId)
+        {
+            var orderline = table
+                .Include(c => c.Product)                   
+                 .First(i => i.OrderId == orderId);
+
+
+            var businessOrderline = mapper.Map<pamela_soulis_project1.Domain.Model.OrderLine>(orderline);
+            return businessOrderline;
+        }
+
 
     }
 }

@@ -28,8 +28,8 @@ namespace pamela_soulis_project1.Domain.Repositories
         public int NewOrder()
         {
 
-            int thisOrderId = table.Count() -1;
-            return thisOrderId;
+            int thisOrderId = table.Count();
+            return thisOrderId; 
 
         }
 
@@ -51,7 +51,7 @@ namespace pamela_soulis_project1.Domain.Repositories
 
 
 
-
+        //This works: add an order based on location and customer id
         public pamela_soulis_project1.Domain.Model.Orders AddOrder(Domain.Model.Orders order, Domain.Model.Customer customer, Domain.Model.Location location)
         {
             //if (customer != null & location != null)

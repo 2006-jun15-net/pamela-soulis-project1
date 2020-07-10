@@ -53,6 +53,18 @@ namespace pamela_soulis_project1.Domain.Repositories
             return businessCustomer;
         }
 
+        //public pamela_soulis_project1.Domain.Model.Customer GetWithNavigationsandOrder(int customerId, int orderId)
+        //{
+        //    var customer = table
+        //        .Include(c => c.Orders)  
+        //        .First(i => i.CustomerId == customerId);
+
+            
+
+        //    var businessCustomer = mapper.Map<pamela_soulis_project1.Domain.Model.Customer>(customer);
+        //    return businessCustomer;
+        //}
+
 
         /// <summary>
         /// Returns the customer to be added to the database, given their first and last name

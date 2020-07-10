@@ -65,6 +65,31 @@ namespace pamela_soulis_project1.WebUI.Controllers
 
 
 
+        public ActionResult DetailsOfNewOrder(int id)
+        {
+
+            var customer = _customerRepo.GetWithNavigations(id);
+            var viewModel = new CustomerViewModel
+            {
+                CustomerId = customer.CustomerId,
+                FirstName = customer.FirstName,
+                LastName = customer.LastName,
+                Orders = customer.Orders.Select(y => new OrdersViewModel
+                {
+                    OrderId = y.OrderId,
+                    CustomerId = y.CustomerId,
+                    LocationId = y.LocationId,
+                    Date = y.Date,
+                    
+                }),
+
+            };
+            return View(viewModel);
+        }
+
+
+
+
         //This works! Adding a new customer
         public ActionResult Create()
         {

@@ -1,0 +1,83 @@
+﻿@model pamela_soulis_project1.WebUI.ViewModels.CustomerViewModel
+
+@{
+    ViewData["Title"] = "DetailsOfNewOrder";
+}
+
+<h1>DetailsOfNewOrder</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    @if (Model.Orders.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Orders.First().OrderId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Orders.First().CustomerId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Orders.First().LocationId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Orders.First().Date)
+                    </th>                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Orders)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LocationId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+<p>
+    <a href="/OrderLine/Create">Continue placing your order</a>
+</p>
+
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        <a asp-action="Index">Back to List</a>
+    </div>

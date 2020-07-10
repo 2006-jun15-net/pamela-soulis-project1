@@ -13,20 +13,21 @@ namespace pamela_soulis_project1.WebUI.ViewModels
 
 
 
-        [Display(Name = "Customer ID")]
+        [Display(Name = "Customer ID")]        
         [Required]
         public int CustomerId { get; set; }
 
 
 
         [Display(Name = "Location ID")]
+        [Range(1, 2)]
         [Required]
         public int LocationId { get; set; }
 
 
 
         [Display(Name = "Order Date")]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
         public DateTime Date { get; set; }
 
 
