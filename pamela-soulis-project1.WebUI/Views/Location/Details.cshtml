@@ -4,10 +4,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Store Details</h1>
 
-<div>
-    <h4>LocationViewModel</h4>
+<div>   
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -44,30 +43,36 @@
                         @Html.DisplayNameFor(model => model.Orders.First().Date)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Orders.First().LocationId)
+                        Amount Purchased
+                    </th>
+                    <th>
+                        Product Purchased
                     </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model.Orders)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OrderId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CustomerId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LocationId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Date)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OrderLine.First().Quantity)
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocationId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderLine.First().Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderLine.First().Product.Name)
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

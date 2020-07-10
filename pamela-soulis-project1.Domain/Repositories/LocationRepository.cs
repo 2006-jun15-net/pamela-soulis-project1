@@ -26,7 +26,7 @@ namespace pamela_soulis_project1.Domain.Repositories
         /// </summary>
         /// <param name="locationId"></param>
         /// <returns></returns>
-        public Location GetWithNavigations(int locationId)
+        public pamela_soulis_project1.Domain.Model.Location GetWithNavigations(int locationId)
         {
             var location = table
                 .Include(l => l.Inventory)
@@ -34,7 +34,7 @@ namespace pamela_soulis_project1.Domain.Repositories
                 .FirstOrDefault();
 
 
-            var businessLocation = mapper.Map<Location>(location);
+            var businessLocation = mapper.Map<pamela_soulis_project1.Domain.Model.Location>(location);
             return businessLocation;
         }
 
@@ -45,7 +45,7 @@ namespace pamela_soulis_project1.Domain.Repositories
         /// </summary>
         /// <param name="locationId"></param>
         /// <returns></returns>
-        public Location GetOrderHistory(int locationId)
+        public pamela_soulis_project1.Domain.Model.Location GetOrderHistory(int locationId)
         {
             var location = table
                 .Include(l => l.Orders)
@@ -53,7 +53,7 @@ namespace pamela_soulis_project1.Domain.Repositories
                         .ThenInclude(o1 => o1.Product)
                 .First(i => i.LocationId == locationId);
 
-            var businessLocation = mapper.Map<Location>(location);
+            var businessLocation = mapper.Map<pamela_soulis_project1.Domain.Model.Location>(location);
             return businessLocation;
         }
     }

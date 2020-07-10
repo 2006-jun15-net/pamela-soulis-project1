@@ -4,6 +4,7 @@ using pamela_soulis_project1.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -20,6 +21,7 @@ namespace pamela_soulis_project1.Domain.Repositories
 
         }
 
+        
 
         //public void DisplayCustomer()
         //{
@@ -38,7 +40,7 @@ namespace pamela_soulis_project1.Domain.Repositories
         /// </summary>
         /// <param name="customerId"></param>
         /// <returns></returns>
-        public Customer GetWithNavigations(int customerId)
+        public pamela_soulis_project1.Domain.Model.Customer GetWithNavigations(int customerId)
         {
             var customer = table
                 .Include(c => c.Orders)
@@ -47,7 +49,7 @@ namespace pamela_soulis_project1.Domain.Repositories
                  .First(i => i.CustomerId == customerId);
 
 
-            var businessCustomer = mapper.Map<Customer>(customer);
+            var businessCustomer = mapper.Map<pamela_soulis_project1.Domain.Model.Customer>(customer);
             return businessCustomer;
         }
 
@@ -58,18 +60,19 @@ namespace pamela_soulis_project1.Domain.Repositories
         /// <param name="customerfirstname"></param>
         /// <param name="customerlastname"></param>
         /// <returns></returns>
-        public Customer AddingANewCustomer(string customerfirstname, string customerlastname)
-        {
-            var theCustomerToBeAdded = new Customer { FirstName = customerfirstname, LastName = customerlastname };
-            //var businessCustomerToBeAdded = mapper.Map<Customer>(theCustomerToBeAdded);
-            return theCustomerToBeAdded; 
-        }
+        //public Customer AddingANewCustomer(string customerfirstname, string customerlastname)
+        //{
+        //    var theCustomerToBeAdded = new Customer { FirstName = customerfirstname, LastName = customerlastname };
+        //    var businessCustomerToBeAdded = mapper.Map<Customer>(theCustomerToBeAdded);
+        //    return businessCustomerToBeAdded; 
+        //}
 
 
-        public void AddCustomer(Customer customer)
+        public pamela_soulis_project1.Domain.Model.Customer AddCustomer(pamela_soulis_project1.Domain.Model.Customer customer)
         {
-            var entity = new Customer { FirstName = customer.FirstName, LastName = customer.LastName };
-            _context.Customer.Add(entity);
+            var entity = new pamela_soulis_project1.Domain.Model.Customer { FirstName = customer.FirstName, LastName = customer.LastName };
+            // _context.Customer.Add(entity);
+            return entity;
 
         }
     }

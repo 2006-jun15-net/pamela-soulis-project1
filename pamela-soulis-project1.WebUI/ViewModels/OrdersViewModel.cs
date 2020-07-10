@@ -8,7 +8,7 @@ namespace pamela_soulis_project1.WebUI.ViewModels
 {
     public class OrdersViewModel
     {
-        [Display(Name = "Your Order ID")]
+        [Display(Name = "Order ID")]
         public int OrderId { get; set; }
 
 
@@ -25,8 +25,8 @@ namespace pamela_soulis_project1.WebUI.ViewModels
 
 
 
-        [Display(Name = "Past Order Date")]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Order Date")]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
         public DateTime Date { get; set; }
 
 
@@ -34,6 +34,13 @@ namespace pamela_soulis_project1.WebUI.ViewModels
         public IEnumerable<OrderlineViewModel> OrderLine { get; set; }  
 
          
+        //date stuff in orders.create.cshtml
+        //<div class="form-group">
+        //        <label asp-for="Date" class="control-label"></label>
+        //        <input asp-for="Date" class="form-control" />
+        //        <span asp-validation-for="Date" class="text-danger"></span>
+        //    </div>
+
 
     }
 }

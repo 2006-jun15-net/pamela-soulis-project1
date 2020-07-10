@@ -9,13 +9,28 @@ namespace pamela_soulis_project1.WebUI.ViewModels
 {
     public class OrderlineViewModel
     {
-         
+
+       
+
+        [Display(Name = "Order ID")]  
+        [Required]
+        public int OrderId { get; set; }
+
+
+
+        [Display(Name = "Product ID")]
+        [Required]
+        public int ProductId { get; set; }
+
+
+
         [Display(Name = "Amount")]
+        [Required]
         public int Quantity { get; set; }
 
         
-        //public Product Product { get; set; }
-        //public IEnumerable<ProductViewModel> Product { get; set; }
+        public pamela_soulis_project1.Domain.Model.Product Product { get; set; }
+        
     }
 
 }

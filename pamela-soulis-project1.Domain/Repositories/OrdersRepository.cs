@@ -28,7 +28,7 @@ namespace pamela_soulis_project1.Domain.Repositories
         public int NewOrder()
         {
 
-            int thisOrderId = table.Count() + 3;
+            int thisOrderId = table.Count() -1;
             return thisOrderId;
 
         }
@@ -40,34 +40,43 @@ namespace pamela_soulis_project1.Domain.Repositories
         /// <param name="customerId"></param>
         /// <param name="locationId"></param>
         /// <returns></returns>
-        public Orders AddingANewOrder(int customerId, int locationId)
-        {
-            DateTime date = DateTime.Now;
-            var orderDate = DateTime.Today;
-            var orderTime = date.TimeOfDay;
-            var theOrderToBeAdded = new Orders { CustomerId = customerId, LocationId = locationId, Date = orderDate };
-            return theOrderToBeAdded;
-        }
-
-        //var businessCustomer = mapper.Map<Customer>(customer);
+        //public Orders AddingANewOrder(int customerId, int locationId)
+        //{
+        //    DateTime date = DateTime.Now;
+        //    var orderDate = DateTime.Today;
+        //    var orderTime = date.TimeOfDay;
+        //    var theOrderToBeAdded = new Orders { CustomerId = customerId, LocationId = locationId, Date = orderDate };
+        //    return theOrderToBeAdded;
+        //}
 
 
-        public void AddOrder(Orders order, Domain.Model.Customer customer, Domain.Model.Location location)
+
+
+        public pamela_soulis_project1.Domain.Model.Orders AddOrder(Domain.Model.Orders order, Domain.Model.Customer customer, Domain.Model.Location location)
         {
             //if (customer != null & location != null)
             //{
 
             //}
             var orderDate = DateTime.Today;
-            var orderEntity = new Orders { CustomerId = customer.CustomerId, LocationId = location.LocationId, Date = orderDate };
-            _context.Orders.Add(orderEntity);
+            var orderEntity = new Domain.Model.Orders { CustomerId = customer.CustomerId, LocationId = location.LocationId, Date = orderDate };
+            // _context.Orders.Add(orderEntity);
+            return orderEntity;
         }
 
-        //public void AddCustomer(Customer customer)
+
+        //public void AddOrder(Orders order, Customer customer, Location location)
         //{
-        //    var entity = new Customer { FirstName = customer.FirstName, LastName = customer.LastName };
-        //    _context.Customer.Add(entity);
+        //    //if (customer != null & location != null)
+        //    //{
+
+        //    //}
+        //    var orderDate = DateTime.Today;
+        //    var orderEntity = new Orders { CustomerId = customer.CustomerId, LocationId = location.LocationId, Date = orderDate };
+        //    _context.Orders.Add(orderEntity);
 
         //}
+
+
     }
 }

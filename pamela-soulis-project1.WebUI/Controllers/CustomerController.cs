@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using pamela_soulis_project1.DataAccess.Model;
+//using pamela_soulis_project1.DataAccess.Model;
 using pamela_soulis_project1.Domain.Repositories;
 using pamela_soulis_project1.WebUI.Models;
 using Microsoft.AspNetCore.Http;
 using pamela_soulis_project1.WebUI.ViewModels;
-//using AspNetCore;
+using pamela_soulis_project1.Domain.Model;
 
 namespace pamela_soulis_project1.WebUI.Controllers
 {
@@ -17,26 +17,25 @@ namespace pamela_soulis_project1.WebUI.Controllers
 
         private readonly CustomerRepository _customerRepo;
 
-        //public CustomerRepository Crepo { get; }
+        
 
-        //public CustomerController(CustomerRepository crepo) =>
-        //    Crepo = crepo ?? throw new ArgumentNullException(nameof(crepo));
-
+        
         public CustomerController(CustomerRepository crepo)
         {
             _customerRepo = crepo;
         }
+
+
+        //This works: home page for customer info displays all past customers
         public IActionResult Index()
         {
 
-            //IEnumerable<Customer> customer = (IEnumerable<Customer>)Crepo.GetAll();
             return View(_customerRepo.GetAll());
             
         }
 
 
-        //almost works : get customer order history ( their order ID and which location ID and how much they bought)
-        // still need to display the product names and have the right title in the table over the quantity
+        //This works : get customer order history ( their order ID and which location ID and how much they bought and the product they bought)
         public ActionResult Details(int id)
         {
             
@@ -54,12 +53,9 @@ namespace pamela_soulis_project1.WebUI.Controllers
                     Date = y.Date,
                     OrderLine = y.OrderLine.Select(x => new OrderlineViewModel
                     {
-                        Quantity = x.Quantity
-                        //Product = x.Product.Select(z => new ProductViewModel
-                        //{ 
-                        //    Name = z.Name
-                        //}),
-                        
+                        Quantity = x.Quantity, 
+                        Product = x.Product 
+
                     }),
                 }),
                 
@@ -68,7 +64,8 @@ namespace pamela_soulis_project1.WebUI.Controllers
         }
 
 
-        //this works! Adding a new customer
+
+        //This works! Adding a new customer
         public ActionResult Create()
         {
             return View();
@@ -87,7 +84,8 @@ namespace pamela_soulis_project1.WebUI.Controllers
                         FirstName = viewModel.FirstName,
                         LastName = viewModel.LastName
                     };
-                    _customerRepo.AddCustomer(customer);
+                    var theNewCustomer = _customerRepo.AddCustomer(customer);
+                    _customerRepo.Insert(theNewCustomer);
                     _customerRepo.SaveToDB();
                     return RedirectToAction(nameof(Index)); 
                 }

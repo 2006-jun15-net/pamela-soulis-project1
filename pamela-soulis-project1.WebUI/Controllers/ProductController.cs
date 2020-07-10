@@ -28,7 +28,7 @@ namespace pamela_soulis_project1.WebUI.Controllers
         {
                     
             return View(_productRepo.GetAll());
-            //return View();
+            
         }
     }
 }

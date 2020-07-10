@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using pamela_soulis_project1.Domain.Model;
 using pamela_soulis_project1.DataAccess.Model;
 using pamela_soulis_project1.Domain.Repositories;
 using pamela_soulis_project1.WebUI.Models;
@@ -48,11 +49,8 @@ namespace pamela_soulis_project1.WebUI.Controllers
                     Date = y.Date,
                     OrderLine = y.OrderLine.Select(x => new OrderlineViewModel
                     {
-                        Quantity = x.Quantity
-                        //Product = x.Product.Select(z => new ProductViewModel
-                        //{ 
-                        //    Name = z.Name
-                        //}),
+                        Quantity = x.Quantity,
+                        Product = x.Product
 
                     }),
                 }),
