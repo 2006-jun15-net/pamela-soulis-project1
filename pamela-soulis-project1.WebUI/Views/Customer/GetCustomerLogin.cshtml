@@ -1,0 +1,60 @@
+﻿@*@model IEnumerable<pamela_soulis_project1.Domain.Model.Customer>
+
+    @{
+        ViewData["Title"] = "GetCustomerLogin";
+    }
+
+    <h1>GetCustomerLogin</h1>
+
+    <table class=" = " table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in Model)
+            {
+                <tr>
+                    <td>@person.FirstName</td>
+                    <td>@person.LastName</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = person.CustomerId, extraData = "extra" }) |
+                        @Html.ActionLink("Details", "Details", new { id = person.CustomerId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = person.CustomerId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
+
+@*@model IEnumerable<pamela_soulis_project1.Domain.Model.Customer>
+
+    @{
+        ViewData["Title"] = "GetCustomerLogin";
+    }
+
+    <h1>GetCustomerLogin</h1>
+
+    <table class=" = " table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody>                        
+             <tr>
+                 <td>@person.FirstName</td>
+                 <td>@person.LastName</td>
+                 <td>
+                     @Html.ActionLink("Edit", "Edit", new { id = person.CustomerId, extraData = "extra" }) |
+                     @Html.ActionLink("Details", "Details", new { id = person.CustomerId }) |
+                     @Html.ActionLink("Delete", "Delete", new { id = person.CustomerId })
+                 </td>
+             </tr>            
+        </tbody>
+    </table>*@
+
+

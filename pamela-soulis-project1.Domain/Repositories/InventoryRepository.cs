@@ -46,16 +46,32 @@ namespace pamela_soulis_project1.Domain.Repositories
         /// <param name="locationId"></param>
         /// <param name="newUpdatedQuantity"></param>
         /// <returns></returns>
-        public Inventory UpdateTheQuantity(int productId, int locationId, int newUpdatedQuantity)
-        {
-            var inventoryAvailable = table
-                .First(i => (i.ProductId == productId) && (i.LocationId == locationId));
+        //public Domain.Model.Inventory UpdateTheQuantity(int productId, int locationId, int newUpdatedQuantity)
+        //{
+        //    var inventoryAvailable = table
+        //        .First(i => (i.ProductId == productId) && (i.LocationId == locationId));
 
-            var businessInventory = mapper.Map<Inventory>(inventoryAvailable);
-            businessInventory.Quantity = newUpdatedQuantity;
-            return businessInventory;
+        //    var businessInventory = mapper.Map<Domain.Model.Inventory>(inventoryAvailable);
+        //    businessInventory.Quantity = newUpdatedQuantity;
+        //    return businessInventory; 
 
-        }
+        //}
+
+
+        //public void UpdateTheQuantity(Domain.Model.Inventory inventory, Domain.Model.Product product, Domain.Model.Location location)
+        //{
+        //    var inventoryAvailableRow = table 
+        //        .First(i => (i.ProductId == product.ProductId) && (i.LocationId == location.LocationId));
+
+        //    var newInventory = mapper.Map<DataAccess.Model.Inventory>(inventory);
+        //    inventoryAvailableRow.Quantity = inventory.Quantity; // change the quantity (given row of prod. and loc. ID) to the quantity in viewmodel
+        //    _context.Entry(inventoryAvailableRow).CurrentValues.SetValues(newInventory);
+        //    //return businessInventory;
+
+        //}
+
+
+
         //public static void UpdateSomeData()
         //{
         //    //    using var context = new pamelasoulisproject0Context(Options);

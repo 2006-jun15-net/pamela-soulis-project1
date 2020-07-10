@@ -23,16 +23,6 @@ namespace pamela_soulis_project1.Domain.Repositories
 
         
 
-        //public void DisplayCustomer()
-        //{
-        //    var pastCustomers = GetAll().ToList();
-        //    foreach (var person in pastCustomers)
-        //    {
-        //        Console.WriteLine($"{person.FirstName}.");
-        //    }
-        //}
-
-
 
 
         /// <summary>
@@ -53,17 +43,7 @@ namespace pamela_soulis_project1.Domain.Repositories
             return businessCustomer;
         }
 
-        //public pamela_soulis_project1.Domain.Model.Customer GetWithNavigationsandOrder(int customerId, int orderId)
-        //{
-        //    var customer = table
-        //        .Include(c => c.Orders)  
-        //        .First(i => i.CustomerId == customerId);
-
-            
-
-        //    var businessCustomer = mapper.Map<pamela_soulis_project1.Domain.Model.Customer>(customer);
-        //    return businessCustomer;
-        //}
+        
 
 
         /// <summary>
@@ -72,20 +52,25 @@ namespace pamela_soulis_project1.Domain.Repositories
         /// <param name="customerfirstname"></param>
         /// <param name="customerlastname"></param>
         /// <returns></returns>
-        //public Customer AddingANewCustomer(string customerfirstname, string customerlastname)
-        //{
-        //    var theCustomerToBeAdded = new Customer { FirstName = customerfirstname, LastName = customerlastname };
-        //    var businessCustomerToBeAdded = mapper.Map<Customer>(theCustomerToBeAdded);
-        //    return businessCustomerToBeAdded; 
-        //}
-
-
+        
         public pamela_soulis_project1.Domain.Model.Customer AddCustomer(pamela_soulis_project1.Domain.Model.Customer customer)
         {
-            var entity = new pamela_soulis_project1.Domain.Model.Customer { FirstName = customer.FirstName, LastName = customer.LastName };
-            // _context.Customer.Add(entity);
+            var entity = new pamela_soulis_project1.Domain.Model.Customer { FirstName = customer.FirstName, LastName = customer.LastName };            
             return entity;
 
         }
+
+
+        public IEnumerable<pamela_soulis_project1.Domain.Model.Customer> SearchByName(string search)
+        {
+            var person = table
+                .Where(c => c.LastName.Contains(search));
+
+
+            var businessCustomer = mapper.Map<IEnumerable<Domain.Model.Customer>>(person);
+            return businessCustomer;
+
+        }
+
     }
 }

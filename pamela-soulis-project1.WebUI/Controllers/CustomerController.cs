@@ -27,12 +27,30 @@ namespace pamela_soulis_project1.WebUI.Controllers
 
 
         //This works: home page for customer info displays all past customers
-        public IActionResult Index()
-        {
+        //public IActionResult Index()
+        //{
 
-            return View(_customerRepo.GetAll());
+        //    return View(_customerRepo.GetAll());
             
+        //}
+
+
+
+        public IActionResult Index(string searchstring)
+        {
+            ViewData["CurrentFilter"] = searchstring;
+            var customers = _customerRepo.GetAll();            
+            if (!String.IsNullOrEmpty(searchstring))
+            {
+                //customers = customers.Where(c => c.LastName.Contains(searchstring));
+                customers = _customerRepo.SearchByName(searchstring);
+            }
+            return View(customers.ToList()); 
         }
+
+
+
+
 
 
         //This works : get customer order history ( their order ID and which location ID and how much they bought and the product they bought)
@@ -122,6 +140,9 @@ namespace pamela_soulis_project1.WebUI.Controllers
             }
             
         }
+
+
+
 
 
 
