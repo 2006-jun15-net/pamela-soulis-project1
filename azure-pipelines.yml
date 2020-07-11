@@ -38,6 +38,7 @@ jobs:
       pollingTimeoutSec: '300'
 
   - task: DotNetCoreCLI@2
+    displayName: dotnet test
     inputs:
       command: 'test'
       arguments: '-c Release --collect:"XPlat Code Coverage"'
@@ -47,7 +48,7 @@ jobs:
     displayName: publish code coverage
     inputs:
       codeCoverageTool: 'Cobertura'
-      summaryFileLocation: '**/TestResults/*/coverage.cobertura.xml'
+      summaryFileLocation: '$(Agent.TempDirectory)/*/coverage.cobertura.xml'
       failIfCoverageEmpty: true
 
   - script: dotnet publish -o publish
