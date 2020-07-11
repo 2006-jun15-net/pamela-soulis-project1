@@ -21,15 +21,23 @@ jobs:
     displayName: dotnet build
 
   - task: DotNetCoreCLI@2
-    displayName: dotnet test
     inputs:
       command: 'test'
+      arguments: '-c Release --collect:"XPlat Code Coverage"'
       testRunTitle: 'ubuntu'
+
+  - task: PublishCodeCoverageResults@1
+    displayName: publish code coverage
+    inputs:
+      codeCoverageTool: 'Cobertura'
+      summaryFileLocation: '**/TestResults/*/coverage.cobertura.xml'
+      failIfCoverageEmpty: true
 
   - script: dotnet publish -o publish
     displayName: dotnet publish
     
   - task: AzureRmWebAppDeployment@4
+    displayName: azure app service deploy
     inputs:
       ConnectionType: 'AzureRM'
       azureSubscription: 'Azure subscription 1(3edca897-65af-4673-84e4-b3d1c79e363a)'
@@ -70,6 +78,7 @@ jobs:
       restoreNugetPackages: true
 
   - task: VSTest@2
+    displayName: visual studio test
     inputs:
       testSelector: 'testAssemblies'
       testAssemblyVer2: |
