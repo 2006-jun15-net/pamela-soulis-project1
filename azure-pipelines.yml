@@ -20,11 +20,11 @@ jobs:
   - script: dotnet build
     displayName: dotnet build
 
-- task: DotNetCoreCLI@2
-  displayName: dotnet test
-  inputs:
-    command: 'test'
-    testRunTitle: 'ubuntu'
+  - task: DotNetCoreCLI@2
+    displayName: dotnet test
+    inputs:
+      command: 'test'
+      testRunTitle: 'ubuntu'
 
 
   - script: |
@@ -58,15 +58,15 @@ jobs:
       configuration: 'Release'
       restoreNugetPackages: true
 
-- task: VSTest@2
-  inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*test*.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-    codeCoverageEnabled: true
-    testRunTitle: 'windows'
-    platform: 'Any CPU'
-    configuration: 'Release'
+  - task: VSTest@2
+    inputs:
+      testSelector: 'testAssemblies'
+      testAssemblyVer2: |
+        **\*test*.dll
+        !**\*TestAdapter.dll
+        !**\obj\**
+      searchFolder: '$(System.DefaultWorkingDirectory)'
+      codeCoverageEnabled: true
+      testRunTitle: 'windows'
+      platform: 'Any CPU'
+      configuration: 'Release'
