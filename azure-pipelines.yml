@@ -26,6 +26,17 @@ jobs:
       command: 'test'
       testRunTitle: 'ubuntu'
 
+  - script: dotnet publish -o publish
+    displayName: dotnet publish
+    
+  - task: AzureRmWebAppDeployment@4
+    inputs:
+      ConnectionType: 'AzureRM'
+      azureSubscription: 'Azure subscription 1(3edca897-65af-4673-84e4-b3d1c79e363a)'
+      appType: 'webApp'
+      WebAppName: 'pamela-soulis-project1'
+      packageForLinux: '$(System.DefaultWorkingDirectory)/publish'
+
 
   - script: |
       echo Add other tasks to build, test, and deploy your project.
