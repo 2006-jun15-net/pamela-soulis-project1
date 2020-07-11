@@ -6,6 +6,11 @@
 trigger:
 - master
 
+pr:
+- master
+
+
+
 jobs:
 - job: build_linux
   pool:
@@ -14,7 +19,7 @@ jobs:
   steps:
   - script: dotnet build
     displayName: dotnet build
-    workingDirectory: pamela-soulis-project1
+
 
   - script: |
       echo Add other tasks to build, test, and deploy your project.
