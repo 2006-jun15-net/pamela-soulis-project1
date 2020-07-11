@@ -64,8 +64,9 @@ namespace pamela_soulis_project1.WebUI.Controllers
                 }
                 return View(viewModel);
             }
-            catch
+            catch (ArgumentException)
             {
+                ModelState.AddModelError("", "Invalid, please try again");
                 return View(viewModel);
             }
 

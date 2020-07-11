@@ -21,12 +21,15 @@ namespace pamela_soulis_project1.WebUI.Controllers
         
         private readonly ProductRepository _productRepo;
 
+        //private readonly InventoryRepository _inventoryRepo;
+
 
         public OrderLineController(OrdersRepository ordrepo, OrderLineRepository olrepo, ProductRepository prorepo)
         {
             _ordersRepo = ordrepo;
             _orderlineRepo = olrepo;           
             _productRepo = prorepo;
+           // _inventoryRepo = invrepo;
         }
 
 
@@ -41,6 +44,7 @@ namespace pamela_soulis_project1.WebUI.Controllers
             return View(orderline); 
         }
 
+        //this works
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(OrderlineViewModel viewModel)
@@ -54,7 +58,7 @@ namespace pamela_soulis_project1.WebUI.Controllers
                     var orderline = new OrderLine
                     {
                         OrderId = viewModel.OrderId,
-                        Quantity = viewModel.Quantity 
+                        Quantity = viewModel.Quantity
                     };
 
                     var thisNewOrderId = _ordersRepo.NewOrder();
@@ -62,17 +66,64 @@ namespace pamela_soulis_project1.WebUI.Controllers
                     _orderlineRepo.Insert(theNewOrder);
                     _orderlineRepo.SaveToDB();
                     return RedirectToAction(nameof(Index));
-                    
+
                 }
                 return View(viewModel);
 
             }
-            catch
+            catch (ArgumentException)
             {
+                ModelState.AddModelError("", "Invalid, please try again.");
                 return View(viewModel);
             }
 
         }
+
+
+
+
+        ////trying with updating inventory
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(OrderlineViewModel viewModel)
+        //{
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            var product = _productRepo.GetById(viewModel.ProductId);
+        //            var order = _ordersRepo.GetById(viewModel.OrderId);
+        //            var orderline = new OrderLine
+        //            {
+        //                OrderId = viewModel.OrderId,
+        //                Quantity = viewModel.Quantity
+        //            };
+
+        //            var thisNewOrderId = _ordersRepo.NewOrder();
+        //            var theNewOrder = _orderlineRepo.AddingANewOrderLine(orderline, product, order);
+        //            _orderlineRepo.Insert(theNewOrder);
+        //            _orderlineRepo.SaveToDB();
+
+        //            //decrease the inventory:
+        //            var maxAmountForOrder = _inventoryRepo.GetProductQuantity(product.ProductId);
+        //            //var newInventory = _inventoryRepo.UpdateTheQuantity()
+
+
+
+
+        //            return RedirectToAction(nameof(Index));
+
+        //        }
+        //        return View(viewModel);
+
+        //    }
+        //    catch (ArgumentException)
+        //    {
+        //        ModelState.AddModelError("", "Invalid, please try again.");
+        //        return View(viewModel);
+        //    }
+
+        //}
 
 
         public IActionResult Index()

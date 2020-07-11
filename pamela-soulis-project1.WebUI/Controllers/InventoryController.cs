@@ -26,15 +26,15 @@ namespace pamela_soulis_project1.WebUI.Controllers
         }
 
 
-        public ActionResult Edit(int productId, int locationId)
-        {
-            var inventory = new InventoryViewModel
-            {
-                ProductId = productId,
-                LocationId = locationId
-            };
-            return View(inventory);
-        }
+        //public ActionResult Edit(int productId, int locationId)
+        //{
+        //    var inventory = new InventoryViewModel
+        //    {
+        //        ProductId = productId,
+        //        LocationId = locationId
+        //    };
+        //    return View(inventory);
+        //}
 
         //[HttpPost]
         //[ValidateAntiForgeryToken]

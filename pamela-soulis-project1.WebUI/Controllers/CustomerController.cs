@@ -35,7 +35,7 @@ namespace pamela_soulis_project1.WebUI.Controllers
         //}
 
 
-
+        //display all customers and search by last name
         public IActionResult Index(string searchstring)
         {
             ViewData["CurrentFilter"] = searchstring;
@@ -134,8 +134,9 @@ namespace pamela_soulis_project1.WebUI.Controllers
                 }
                 return View(viewModel);
             }
-            catch
+            catch (ArgumentException)
             {
+                ModelState.AddModelError("", "Invalid, please try again");
                 return View(viewModel);
             }
             

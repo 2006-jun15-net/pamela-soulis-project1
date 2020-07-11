@@ -60,7 +60,7 @@ namespace pamela_soulis_project1.Domain.Repositories
 
         //public void UpdateTheQuantity(Domain.Model.Inventory inventory, Domain.Model.Product product, Domain.Model.Location location)
         //{
-        //    var inventoryAvailableRow = table 
+        //    var inventoryAvailableRow = table
         //        .First(i => (i.ProductId == product.ProductId) && (i.LocationId == location.LocationId));
 
         //    var newInventory = mapper.Map<DataAccess.Model.Inventory>(inventory);
