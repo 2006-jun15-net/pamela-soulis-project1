@@ -21,15 +21,15 @@ namespace pamela_soulis_project1.WebUI.Controllers
         
         private readonly ProductRepository _productRepo;
 
-        //private readonly InventoryRepository _inventoryRepo;
+        private readonly InventoryRepository _inventoryRepo;
 
 
-        public OrderLineController(OrdersRepository ordrepo, OrderLineRepository olrepo, ProductRepository prorepo)
+        public OrderLineController(OrdersRepository ordrepo, OrderLineRepository olrepo, ProductRepository prorepo, InventoryRepository invrepo)
         {
             _ordersRepo = ordrepo;
             _orderlineRepo = olrepo;           
             _productRepo = prorepo;
-           // _inventoryRepo = invrepo;
+            _inventoryRepo = invrepo;
         }
 
 
@@ -45,44 +45,6 @@ namespace pamela_soulis_project1.WebUI.Controllers
         }
 
         //this works
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(OrderlineViewModel viewModel)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var product = _productRepo.GetById(viewModel.ProductId);
-                    var order = _ordersRepo.GetById(viewModel.OrderId);
-                    var orderline = new OrderLine
-                    {
-                        OrderId = viewModel.OrderId,
-                        Quantity = viewModel.Quantity
-                    };
-
-                    var thisNewOrderId = _ordersRepo.NewOrder();
-                    var theNewOrder = _orderlineRepo.AddingANewOrderLine(orderline, product, order);
-                    _orderlineRepo.Insert(theNewOrder);
-                    _orderlineRepo.SaveToDB();
-                    return RedirectToAction(nameof(Index));
-
-                }
-                return View(viewModel);
-
-            }
-            catch (ArgumentException)
-            {
-                ModelState.AddModelError("", "Invalid, please try again.");
-                return View(viewModel);
-            }
-
-        }
-
-
-
-
-        ////trying with updating inventory
         //[HttpPost]
         //[ValidateAntiForgeryToken]
         //public ActionResult Create(OrderlineViewModel viewModel)
@@ -103,14 +65,6 @@ namespace pamela_soulis_project1.WebUI.Controllers
         //            var theNewOrder = _orderlineRepo.AddingANewOrderLine(orderline, product, order);
         //            _orderlineRepo.Insert(theNewOrder);
         //            _orderlineRepo.SaveToDB();
-
-        //            //decrease the inventory:
-        //            var maxAmountForOrder = _inventoryRepo.GetProductQuantity(product.ProductId);
-        //            //var newInventory = _inventoryRepo.UpdateTheQuantity()
-
-
-
-
         //            return RedirectToAction(nameof(Index));
 
         //        }
@@ -124,6 +78,59 @@ namespace pamela_soulis_project1.WebUI.Controllers
         //    }
 
         //}
+
+
+
+
+        ////trying with updating inventory
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(OrderlineViewModel viewModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                   // var previousOrdersInfo = TempData["OrdersData"] as Orders;
+                    var product = _productRepo.GetById(viewModel.ProductId);
+                    var order = _ordersRepo.GetById(viewModel.OrderId);
+                    var orderline = new OrderLine
+                    {
+                        OrderId = viewModel.OrderId,
+                        Quantity = viewModel.Quantity
+                    };
+
+                    var thisNewOrderId = _ordersRepo.NewOrder();
+                    var theNewOrder = _orderlineRepo.AddingANewOrderLine(orderline, product, order);
+                    _orderlineRepo.Insert(theNewOrder);
+                    _orderlineRepo.SaveToDB();
+
+
+                    //  first get the inventory that's avaliable for that product
+                    var maxAmountForOrder = _inventoryRepo.GetProductQuantity(product.ProductId); //the amount available before order
+                    //  then check if product amount asked for is > that maxAmountForOrder
+                    //  if so, reject order
+
+                    maxAmountForOrder.Quantity = maxAmountForOrder.Quantity - orderline.Quantity;
+
+                    //decrease the inventory for a given product at a given location
+                    _inventoryRepo.UpdateTheQuantity(maxAmountForOrder.Quantity, product, 1);
+                    _inventoryRepo.SaveToDB();
+
+
+                    return RedirectToAction(nameof(Index));
+
+                }
+                return View(viewModel);
+
+            }
+            catch (ArgumentException)
+            {
+                ModelState.AddModelError("", "Invalid, please try again.");
+                return View(viewModel);
+            }
+
+        }
 
 
         public IActionResult Index()

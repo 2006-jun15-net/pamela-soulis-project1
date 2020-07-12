@@ -55,6 +55,7 @@ namespace pamela_soulis_project1.WebUI.Controllers
                         Date = viewModel.Date
                     };
 
+                    
                     var theNewOrder = _ordersRepo.AddOrder(order, customer, location);
                     _ordersRepo.Insert(theNewOrder);
                     _ordersRepo.SaveToDB();

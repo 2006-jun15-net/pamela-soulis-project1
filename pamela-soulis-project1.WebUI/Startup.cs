@@ -35,6 +35,7 @@ namespace pamela_soulis_project1.WebUI
             services.AddScoped<ProductRepository>();
             services.AddScoped<OrdersRepository>();
             services.AddScoped<OrderLineRepository>();
+            services.AddScoped<InventoryRepository>();
 
             services.AddControllersWithViews();
         }

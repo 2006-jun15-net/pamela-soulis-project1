@@ -58,17 +58,18 @@ namespace pamela_soulis_project1.Domain.Repositories
         //}
 
 
-        //public void UpdateTheQuantity(Domain.Model.Inventory inventory, Domain.Model.Product product, Domain.Model.Location location)
-        //{
-        //    var inventoryAvailableRow = table
-        //        .First(i => (i.ProductId == product.ProductId) && (i.LocationId == location.LocationId));
+        //public void UpdateTheQuantity(Domain.Model.OrderLine orderline, Domain.Model.Product product, Domain.Model.Location location)
+        public void UpdateTheQuantity(int amount, Domain.Model.Product product, int id)
+        {
+            var inventoryAvailableRow = table
+                .First(i => (i.ProductId == product.ProductId) && (i.LocationId == id));
 
-        //    var newInventory = mapper.Map<DataAccess.Model.Inventory>(inventory);
-        //    inventoryAvailableRow.Quantity = inventory.Quantity; // change the quantity (given row of prod. and loc. ID) to the quantity in viewmodel
-        //    _context.Entry(inventoryAvailableRow).CurrentValues.SetValues(newInventory);
-        //    //return businessInventory;
+            var newInventory = mapper.Map<DataAccess.Model.Inventory>(inventoryAvailableRow);
+            newInventory.Quantity = amount; // change the quantity (given row of prod. and loc. ID) to the quantity in viewmodel
+            _context.Entry(inventoryAvailableRow).CurrentValues.SetValues(newInventory);
+            //return businessInventory;
 
-        //}
+        }
 
 
 
