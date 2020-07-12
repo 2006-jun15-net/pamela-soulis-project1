@@ -5,7 +5,7 @@
 }
 
 
-<h1>Customer Information</h1>
+<h1 style="color:darkblue">Our Customers</h1>
 <p>
     <a asp-action="Create">Register if you are a new customer</a>
 </p>
@@ -23,9 +23,9 @@
     <table class=" = " table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th style="color:cadetblue">ID</th>
+                <th style="color:cadetblue">First Name</th>
+                <th style="color:cadetblue">Last Name</th>
             </tr>
         </thead>
         <tbody>
@@ -35,8 +35,7 @@
                 <td>@person.CustomerId</td>
                 <td>@person.FirstName</td>
                 <td>@person.LastName</td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = person.CustomerId, extraData = "extra" }) |
+                <td>                    
                     @Html.ActionLink("Details", "Details", new { id = person.CustomerId }) |
                     @Html.ActionLink("Delete", "Delete", new { id = person.CustomerId })
                 </td>

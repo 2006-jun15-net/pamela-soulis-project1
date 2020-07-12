@@ -110,6 +110,10 @@ namespace pamela_soulis_project1.WebUI.Controllers
                     var maxAmountForOrder = _inventoryRepo.GetProductQuantity(product.ProductId); //the amount available before order
                     //  then check if product amount asked for is > that maxAmountForOrder
                     //  if so, reject order
+                    if (orderline.Quantity > maxAmountForOrder.Quantity)
+                    {
+                        ModelState.AddModelError("", "Sorry, this product is out of stock, try again.");
+                    }
 
                     maxAmountForOrder.Quantity = maxAmountForOrder.Quantity - orderline.Quantity;
 

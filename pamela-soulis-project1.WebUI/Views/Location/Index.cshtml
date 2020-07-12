@@ -5,12 +5,12 @@
 }
 
 
-<h1>Our Stores</h1>
+<h1 style="color:darkblue">Our Stores</h1>
     <table class=" = " table">
         <thead>
             <tr>
-                <th>Location ID</th>
-                <th>Store</th>
+                <th style="color:cadetblue">Location ID</th>
+                <th style="color:cadetblue">Store</th>
             </tr>
         </thead>
         <tbody>
@@ -20,11 +20,9 @@
                 <td>@place.LocationId</td>
                 <td>@place.Name</td>
 
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = place.LocationId, extraData = "extra" }) |
+                <td>                    
                     @Html.ActionLink("Details", "Details", new { id = place.LocationId }) |
-                    @Html.ActionLink("InventoryDetails", "InventoryDetails", new { id = place.LocationId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = place.LocationId })
+                    @Html.ActionLink("InventoryDetails", "InventoryDetails", new { id = place.LocationId })                   
                 </td>
             </tr>
             }

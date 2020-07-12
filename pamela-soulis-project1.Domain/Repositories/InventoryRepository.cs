@@ -67,18 +67,9 @@ namespace pamela_soulis_project1.Domain.Repositories
             var newInventory = mapper.Map<DataAccess.Model.Inventory>(inventoryAvailableRow);
             newInventory.Quantity = amount; // change the quantity (given row of prod. and loc. ID) to the quantity in viewmodel
             _context.Entry(inventoryAvailableRow).CurrentValues.SetValues(newInventory);
-            //return businessInventory;
+           
 
         }
-
-
-
-        //public static void UpdateSomeData()
-        //{
-        //    //    using var context = new pamelasoulisproject0Context(Options);
-        //    //    var EmployeeToUpdate = context.Employee.First();
-        //    //    EmployeeToUpdate.FirstName = "Alejandro";
-        //    //    context.SaveChanges();
 
 
     }

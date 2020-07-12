@@ -5,23 +5,41 @@ a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  
+ 
 }
 
+/*navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 {
+    background-color: crimson;
+}*/
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: black;
 }
 
+a.text-dark {
+    color: darkblue;
+}
+
+
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+  
+
+}
+
+.image-container {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Sticky footer styles
@@ -35,8 +53,16 @@ html {
   }
 }
 
+
+
+/*.header {
+    
+    background-color: #6495ed;
+    
+}*/
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
+    
 }
 .border-bottom {
   border-bottom: 1px solid #e5e5e5;
@@ -61,11 +87,21 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+
 }
+
+/*.header {
+    background-color: red;
+}*/
+
+/*.navbar {
+    background-color: red;
+}*/
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+  background-color: #66b5d0;
 }
