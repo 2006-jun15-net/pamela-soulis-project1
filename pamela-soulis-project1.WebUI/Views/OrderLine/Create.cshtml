@@ -14,6 +14,10 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
+            <select asp-for="ProductId" asp-items="Model.Products"></select> 
+
+
+            
             <div class="form-group">
                 <label asp-for="ProductId" class="control-label"></label>
                 <input asp-for="ProductId" class="form-control" />

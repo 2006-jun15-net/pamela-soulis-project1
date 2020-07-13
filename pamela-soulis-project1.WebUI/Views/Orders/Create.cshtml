@@ -17,6 +17,10 @@
                 <input asp-for="CustomerId" class="form-control" />
                 <span asp-validation-for="CustomerId" class="text-danger"></span>
             </div>
+
+            <select asp-for="LocationId" asp-items="Model.Locations"></select>
+
+
             <div class="form-group">
                 <label asp-for="LocationId" class="control-label"></label>
                 <input asp-for="LocationId" class="form-control" />

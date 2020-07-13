@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace pamela_soulis_project1.WebUI.ViewModels
 {
@@ -32,15 +33,15 @@ namespace pamela_soulis_project1.WebUI.ViewModels
 
 
 
-        public IEnumerable<OrderlineViewModel> OrderLine { get; set; }  
+        public IEnumerable<OrderlineViewModel> OrderLine { get; set; }
 
-         
-        //date stuff in orders.create.cshtml
-        //<div class="form-group">
-        //        <label asp-for="Date" class="control-label"></label>
-        //        <input asp-for="Date" class="form-control" />
-        //        <span asp-validation-for="Date" class="text-danger"></span>
-        //    </div>
+
+        public List<SelectListItem> Locations { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value = "1", Text = "Off Piste Market Street" },
+            new SelectListItem { Value = "2", Text = "Off Piste Northfield" },
+            
+        };
 
 
     }
