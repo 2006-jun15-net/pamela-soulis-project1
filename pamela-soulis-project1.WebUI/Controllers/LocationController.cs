@@ -17,10 +17,7 @@ namespace pamela_soulis_project1.WebUI.Controllers
 
         private readonly LocationRepository _locationRepo; 
 
-        //public CustomerRepository Crepo { get; }
-
-        //public CustomerController(CustomerRepository crepo) =>
-        //    Crepo = crepo ?? throw new ArgumentNullException(nameof(crepo));
+        
 
         public LocationController(LocationRepository locrepo)
         {

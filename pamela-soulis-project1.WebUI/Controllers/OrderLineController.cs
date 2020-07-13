@@ -91,7 +91,7 @@ namespace pamela_soulis_project1.WebUI.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                   // var previousOrdersInfo = TempData["OrdersData"] as Orders;
+                    int previousOrdersLocationInfo = (int)TempData["userLocation"];
                     var product = _productRepo.GetById(viewModel.ProductId);
                     var order = _ordersRepo.GetById(viewModel.OrderId);
                     var orderline = new OrderLine
@@ -119,7 +119,9 @@ namespace pamela_soulis_project1.WebUI.Controllers
                     maxAmountForOrder.Quantity = maxAmountForOrder.Quantity - orderline.Quantity;
 
                     //decrease the inventory for a given product at a given location
-                    _inventoryRepo.UpdateTheQuantity(maxAmountForOrder.Quantity, product, 1);
+                    //_inventoryRepo.UpdateTheQuantity(maxAmountForOrder.Quantity, product, 1);
+
+                    _inventoryRepo.UpdateTheQuantity(maxAmountForOrder.Quantity, product, previousOrdersLocationInfo);
                     _inventoryRepo.SaveToDB();
 
 

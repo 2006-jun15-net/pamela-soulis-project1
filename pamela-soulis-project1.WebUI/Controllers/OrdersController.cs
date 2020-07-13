@@ -57,6 +57,10 @@ namespace pamela_soulis_project1.WebUI.Controllers
 
                     
                     var theNewOrder = _ordersRepo.AddOrder(order, customer, location);
+
+                    //store the location ID that user inputed
+                    TempData["userLocation"] = location.LocationId;
+
                     _ordersRepo.Insert(theNewOrder);
                     _ordersRepo.SaveToDB();
                     return RedirectToAction(nameof(CustomerController.DetailsOfNewOrder),
