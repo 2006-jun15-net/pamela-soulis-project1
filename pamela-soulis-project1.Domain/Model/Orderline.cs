@@ -12,14 +12,29 @@ namespace pamela_soulis_project1.Domain.Model
     public class OrderLine : BaseBusinessModel
     {
 
+       
         private int _quantity;
 
+
+        /// <summary>
+        /// Has an Order ID FK
+        /// </summary>
         public int OrderId { get; set; }
+
+        /// <summary>
+        /// And a Product ID FK
+        /// </summary>
         public int ProductId { get; set; }
+
+        /// <summary>
+        /// And products
+        /// </summary>
         public Product Product { get; set; }
         
 
-
+        /// <summary>
+        /// And product amount user can add to order
+        /// </summary>
         public int Quantity
         {
             get => _quantity;

@@ -101,7 +101,8 @@ namespace pamela_soulis_project1.WebUI.Controllers
                     };
 
                     var thisNewOrderId = _ordersRepo.NewOrder();
-                    var theNewOrder = _orderlineRepo.AddingANewOrderLine(orderline, product, order);
+                    //var theNewOrder = _orderlineRepo.AddingANewOrderLine(orderline, product, order); //don't need this anymore
+                    var theNewOrder = _orderlineRepo.AddingANewOrderLine(orderline, product, thisNewOrderId);
                     _orderlineRepo.Insert(theNewOrder);
                     _orderlineRepo.SaveToDB();
 

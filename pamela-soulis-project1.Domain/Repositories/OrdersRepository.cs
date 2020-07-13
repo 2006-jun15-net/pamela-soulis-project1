@@ -40,42 +40,18 @@ namespace pamela_soulis_project1.Domain.Repositories
         /// <param name="customerId"></param>
         /// <param name="locationId"></param>
         /// <returns></returns>
-        //public Orders AddingANewOrder(int customerId, int locationId)
-        //{
-        //    DateTime date = DateTime.Now;
-        //    var orderDate = DateTime.Today;
-        //    var orderTime = date.TimeOfDay;
-        //    var theOrderToBeAdded = new Orders { CustomerId = customerId, LocationId = locationId, Date = orderDate };
-        //    return theOrderToBeAdded;
-        //}
-
-
+        
 
         //This works: add an order based on location and customer id
         public pamela_soulis_project1.Domain.Model.Orders AddOrder(Domain.Model.Orders order, Domain.Model.Customer customer, Domain.Model.Location location)
         {
-            //if (customer != null & location != null)
-            //{
-
-            //}
+            
             var orderDate = DateTime.Today;
             var orderEntity = new Domain.Model.Orders { CustomerId = customer.CustomerId, LocationId = location.LocationId, Date = orderDate };
-            // _context.Orders.Add(orderEntity);
+            
             return orderEntity;
         }
 
-
-        //public void AddOrder(Orders order, Customer customer, Location location)
-        //{
-        //    //if (customer != null & location != null)
-        //    //{
-
-        //    //}
-        //    var orderDate = DateTime.Today;
-        //    var orderEntity = new Orders { CustomerId = customer.CustomerId, LocationId = location.LocationId, Date = orderDate };
-        //    _context.Orders.Add(orderEntity);
-
-        //}
 
 
     }

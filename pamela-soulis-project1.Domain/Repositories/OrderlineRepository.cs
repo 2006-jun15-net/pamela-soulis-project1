@@ -28,21 +28,17 @@ namespace pamela_soulis_project1.Domain.Repositories
         /// <param name="orderId"></param>
         /// <param name="productId"></param>
         /// <param name="quantity"></param>
-        /// <returns></returns>
-        //public pamela_soulis_project1.Domain.Model.OrderLine AddingANewOrderLine(int orderid, Domain.Model.Product product, Domain.Model.OrderLine orderline)
-        //{
+        /// <returns></returns>       
 
-        //    var theOrderToBeAdded = new pamela_soulis_project1.Domain.Model.OrderLine { OrderId = orderid, ProductId = product.ProductId, Quantity = orderline.Quantity };
-        //    return theOrderToBeAdded;
-        //}
-
-
-
-        //this works! add an orderline: but, need to do it without 
-        public pamela_soulis_project1.Domain.Model.OrderLine AddingANewOrderLine(Domain.Model.OrderLine orderline, Domain.Model.Product product, Domain.Model.Orders order)
+        //this works! add an orderline:  
+        //public pamela_soulis_project1.Domain.Model.OrderLine AddingANewOrderLine(Domain.Model.OrderLine orderline, Domain.Model.Product product, Domain.Model.Orders order) //don't need this anymore
+        public pamela_soulis_project1.Domain.Model.OrderLine AddingANewOrderLine(Domain.Model.OrderLine orderline, Domain.Model.Product product, int theNewOrderIdToEnter)
         {
-            //int thisNewOrderId = _orderRepo.NewOrder();
-            var theOrderToBeAdded = new pamela_soulis_project1.Domain.Model.OrderLine { OrderId = order.OrderId, ProductId = product.ProductId, Quantity = orderline.Quantity };
+                       
+            var theOrderToBeAdded = new pamela_soulis_project1.Domain.Model.OrderLine { OrderId = theNewOrderIdToEnter, ProductId = product.ProductId, Quantity = orderline.Quantity };
+            
+            
+            //var theOrderToBeAdded = new pamela_soulis_project1.Domain.Model.OrderLine { OrderId = order.OrderId, ProductId = product.ProductId, Quantity = orderline.Quantity }; //don't need this anymore
             return theOrderToBeAdded;
         }
 
