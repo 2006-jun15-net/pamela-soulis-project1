@@ -28,6 +28,7 @@ namespace pamela_soulis_project1.WebUI.ViewModels
 
 
         [Display(Name = "Amount")]
+        [Range(1,30)]
         [Required]
         public int Quantity { get; set; }
 

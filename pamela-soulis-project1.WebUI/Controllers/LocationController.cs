@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using pamela_soulis_project1.Domain.Model;
-using pamela_soulis_project1.DataAccess.Model;
+//using pamela_soulis_project1.DataAccess.Model;
 using pamela_soulis_project1.Domain.Repositories;
 using pamela_soulis_project1.WebUI.Models;
 using Microsoft.AspNetCore.Http;

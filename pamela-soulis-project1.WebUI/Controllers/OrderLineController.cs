@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-//using pamela_soulis_project1.DataAccess.Model;
 using pamela_soulis_project1.Domain.Model;
 using pamela_soulis_project1.Domain.Repositories;
 using pamela_soulis_project1.WebUI.Models;
@@ -100,14 +99,8 @@ namespace pamela_soulis_project1.WebUI.Controllers
                         Quantity = viewModel.Quantity
                     };
 
-                    var thisNewOrderId = _ordersRepo.NewOrder();
-                    //var theNewOrder = _orderlineRepo.AddingANewOrderLine(orderline, product, order); //don't need this anymore
-                    var theNewOrder = _orderlineRepo.AddingANewOrderLine(orderline, product, thisNewOrderId);
-                    _orderlineRepo.Insert(theNewOrder);
-                    _orderlineRepo.SaveToDB();
 
-
-                    //  first get the inventory that's avaliable for that product
+                    //  first get the inventory that's available for that product
                     var maxAmountForOrder = _inventoryRepo.GetProductQuantity(product.ProductId); //the amount available before order
                     //  then check if product amount asked for is > that maxAmountForOrder
                     //  if so, reject order
@@ -115,6 +108,16 @@ namespace pamela_soulis_project1.WebUI.Controllers
                     {
                         ModelState.AddModelError("", "Sorry, this product is out of stock, try again.");
                     }
+
+
+                    var thisNewOrderId = _ordersRepo.NewOrder();
+                    //var theNewOrder = _orderlineRepo.AddingANewOrderLine(orderline, product, order); //don't need this anymore
+                    var theNewOrder = _orderlineRepo.AddingANewOrderLine(orderline, product, thisNewOrderId);
+                    _orderlineRepo.Insert(theNewOrder);
+                    _orderlineRepo.SaveToDB();
+
+
+                    
 
                     maxAmountForOrder.Quantity = maxAmountForOrder.Quantity - orderline.Quantity;
 
@@ -147,19 +150,6 @@ namespace pamela_soulis_project1.WebUI.Controllers
 
         }
 
-        //public ActionResult OrderlineDetailsOfNewOrder(int id)
-        //{
-
-        //    var orderline = _orderlineRepo.GetWithNavigations(id);
-        //    var viewModel = new OrderlineViewModel
-        //    {
-        //        OrderId = orderline.OrderId,
-        //        Product = orderline.Product,
-        //        Quantity = orderline.Quantity
-
-
-        //    };
-        //    return View(viewModel);
-        //}
+        
     }
 }

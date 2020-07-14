@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-//using pamela_soulis_project1.DataAccess.Model;
 using pamela_soulis_project1.Domain.Repositories;
 using pamela_soulis_project1.WebUI.Models;
 using Microsoft.AspNetCore.Http;
@@ -26,7 +25,7 @@ namespace pamela_soulis_project1.WebUI.Controllers
         }
 
 
-        //This works: home page for customer info displays all past customers
+        //home page for customer info displays all past customers
         //public IActionResult Index()
         //{
 
@@ -44,7 +43,7 @@ namespace pamela_soulis_project1.WebUI.Controllers
             var customers = _customerRepo.GetAll();            
             if (!String.IsNullOrEmpty(searchstring))
             {
-                //customers = customers.Where(c => c.LastName.Contains(searchstring));
+                
                 customers = _customerRepo.SearchByName(searchstring);
             }
             return View(customers.ToList()); 
@@ -55,7 +54,7 @@ namespace pamela_soulis_project1.WebUI.Controllers
 
 
 
-        //This works : get customer order history ( their order ID and which location ID and how much they bought and the product they bought)
+        //get customer order history ( their order ID and which location ID and how much they bought and the product they bought)
         public ActionResult Details(int id)
         {
             

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-//using pamela_soulis_project1.DataAccess.Model;
 using pamela_soulis_project1.Domain.Repositories;
 using pamela_soulis_project1.WebUI.Models;
 using Microsoft.AspNetCore.Http;
@@ -26,21 +25,5 @@ namespace pamela_soulis_project1.WebUI.Controllers
         }
 
 
-        //public ActionResult Edit(int productId, int locationId)
-        //{
-        //    var inventory = new InventoryViewModel
-        //    {
-        //        ProductId = productId,
-        //        LocationId = locationId
-        //    };
-        //    return View(inventory);
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(InventoryViewModel viewModel)
-        //{
-
-        //}
     }
 }
