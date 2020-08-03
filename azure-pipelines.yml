@@ -39,7 +39,7 @@ jobs:
       containerRegistry: 'project1Dockerize'
       repository: 'proj1'
       command: 'buildAndPush'
-      Dockerfile: '**/Dockerfile'
+      Dockerfile: '/app/src/Dockerfile'
  
 # proj1Dockerize
 
