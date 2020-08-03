@@ -24,16 +24,22 @@ jobs:
 
   steps:
   
+  # - task: Docker@2
+  #   inputs:
+  #     command: buildAndPush
+  #     repository: 'pamela-soulis-project1'
+  #     # dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+  #     dockerfile: '/Users/pamelasoulis/Documents/Revature/pamela-soulis-project1/Dockerfile'
+  #     containerRegistry: 'e8da99fa-c514-4321-b917-f3369c877dd7'
+  #     tags: |
+  #       $('$(Build.BuildId)')
+     
   - task: Docker@2
     inputs:
-      command: buildAndPush
-      repository: 'pamela-soulis-project1'
-      # dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-      dockerfile: '/Users/pamelasoulis/Documents/Revature/pamela-soulis-project1/Dockerfile'
-      containerRegistry: 'e8da99fa-c514-4321-b917-f3369c877dd7'
-      tags: |
-        $('$(Build.BuildId)')
-     
+      containerRegistry: 'project1Dockerize'
+      repository: 'proj1'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
  
 # proj1Dockerize
 
