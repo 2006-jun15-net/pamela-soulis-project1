@@ -16,8 +16,7 @@ jobs:
   pool:
     vmImage: 'ubuntu-latest'
   
-variables:
-  tag: '$(Build.BuildId)'
+
 
   steps:
   
@@ -28,7 +27,7 @@ variables:
       dockerfile: '**/Dockerfile'
       containerRegistry: 'e8da99fa-c514-4321-b917-f3369c877dd7'
       tags: |
-        $(tag)
+        $('$(Build.BuildId)')
       
  
 # proj1Dockerize
