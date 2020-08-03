@@ -28,7 +28,8 @@ jobs:
     inputs:
       command: buildAndPush
       repository: 'pamela-soulis-project1'
-      dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+      # dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+      dockerfile: '/Users/pamelasoulis/Documents/Revature/pamela-soulis-project1/Dockerfile'
       containerRegistry: 'e8da99fa-c514-4321-b917-f3369c877dd7'
       tags: |
         $('$(Build.BuildId)')
