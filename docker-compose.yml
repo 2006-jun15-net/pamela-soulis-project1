@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+
+  api:
+    build:
+      context: pamela-soulis-project1
+    image: proj1:1.0
+    depends_on:
+      - data
+    ports:
+      - 44350:80
+    networks:
+      - default
+    environment:
+      ConnectionStrings__AzureSql: Server=tcp:data,1433;Initial Catalog=pamela-soulis-project1;User ID=sa;Password=Pass@word
+
+  data:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 1433:1433
+    networks:
+      - default
+    environment:
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: Pass@word
+
+networks:
+  default:
