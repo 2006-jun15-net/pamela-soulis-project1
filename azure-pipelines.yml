@@ -3,11 +3,15 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+
 trigger:
-- dockerize
+  branches: 
+    include:
+    - master
+    - dockerize
 
 pr:
-- dockerize
+- master
 
 
 
