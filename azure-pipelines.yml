@@ -28,7 +28,7 @@ jobs:
     inputs:
       repository: 'pamela-soulis-project1'
       command: 'buildAndPush'
-      Dockerfile: '**/Dockerfile'
+      Dockerfile: '$(System.DefaultWorkingDirectory)/Dockerfile'
 
   - task: SonarCloudPrepare@1
     displayName: sonarcloud prepare analysis
