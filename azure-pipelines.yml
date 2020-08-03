@@ -22,7 +22,7 @@ jobs:
     inputs:
      repository: pamela-soulis-project1
      command: build
-     Dockerfile: app/Dockerfile
+     Dockerfile: Dockerfile
 
   - task: SonarCloudPrepare@1
     displayName: sonarcloud prepare analysis
