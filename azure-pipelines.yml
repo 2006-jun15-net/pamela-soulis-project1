@@ -4,10 +4,10 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- dockerize
 
 pr:
-- master
+- dockerize
 
 
 
