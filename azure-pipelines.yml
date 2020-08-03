@@ -15,18 +15,23 @@ jobs:
 - job: build_linux
   pool:
     vmImage: 'ubuntu-latest'
+  
+variables:
+  tag: '$(Build.BuildId)'
 
   steps:
   
   - task: Docker@2
     inputs:
-      containerRegistry: 'proj1Dockerize'
-      repository: 'proj1'
-      command: 'buildAndPush'
-      tags: 1.0
-      Dockerfile: 'pamela-soulis-project1/Dockerfile'
+      command: buildAndPush
+      repository: 'pamela-soulis-project1'
+      dockerfile: '**/Dockerfile'
+      containerRegistry: 'e8da99fa-c514-4321-b917-f3369c877dd7'
+      tags: |
+        $(tag)
+      
  
-
+# proj1Dockerize
 
   # - task: Docker@2
   #   inputs:
