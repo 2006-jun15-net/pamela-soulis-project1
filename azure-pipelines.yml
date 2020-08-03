@@ -86,47 +86,47 @@ variables:
       packageForLinux: '$(System.DefaultWorkingDirectory)/publish'
 
 
-  - script: |
-      echo Add other tasks to build, test, and deploy your project.
-      echo See https://aka.ms/yaml
-    displayName: 'Run a multi-line script'
+  # - script: |
+  #     echo Add other tasks to build, test, and deploy your project.
+  #     echo See https://aka.ms/yaml
+  #   displayName: 'Run a multi-line script'
 
-- job: build_windows
-  pool:
-    vmImage: windows-latest
+# - job: build_windows
+#   pool:
+#     vmImage: windows-latest
 
-  steps:
-  - task: NuGetToolInstaller@1
-    displayName: install nuget
-    inputs:
-      versionSpec: 
+#   steps:
+#   - task: NuGetToolInstaller@1
+#     displayName: install nuget
+#     inputs:
+#       versionSpec: 
 
-  - task: NuGetCommand@2
-    displayName: nuget restore
-    inputs:
-      command: 'restore'
-      restoreSolution: '**/*.sln'
-      feedsToUse: 'select'
+#   - task: NuGetCommand@2
+#     displayName: nuget restore
+#     inputs:
+#       command: 'restore'
+#       restoreSolution: '**/*.sln'
+#       feedsToUse: 'select'
 
 
-  - task: VSBuild@1
-    displayName: Visual Studio build
-    inputs:
-      solution: '**\*.sln'
-      platform: 'Any CPU'
-      configuration: 'Release'
-      restoreNugetPackages: true
+#   - task: VSBuild@1
+#     displayName: Visual Studio build
+#     inputs:
+#       solution: '**\*.sln'
+#       platform: 'Any CPU'
+#       configuration: 'Release'
+#       restoreNugetPackages: true
 
-  - task: VSTest@2
-    displayName: visual studio test
-    inputs:
-      testSelector: 'testAssemblies'
-      testAssemblyVer2: |
-        **\*test*.dll
-        !**\*TestAdapter.dll
-        !**\obj\**
-      searchFolder: '$(System.DefaultWorkingDirectory)'
-      codeCoverageEnabled: true
-      testRunTitle: 'windows'
-      platform: 'Any CPU'
-      configuration: 'Release'
+#   - task: VSTest@2
+#     displayName: visual studio test
+#     inputs:
+#       testSelector: 'testAssemblies'
+#       testAssemblyVer2: |
+#         **\*test*.dll
+#         !**\*TestAdapter.dll
+#         !**\obj\**
+#       searchFolder: '$(System.DefaultWorkingDirectory)'
+#       codeCoverageEnabled: true
+#       testRunTitle: 'windows'
+#       platform: 'Any CPU'
+#       configuration: 'Release'
