@@ -24,7 +24,7 @@ jobs:
       repository: 'proj1'
       command: 'buildAndPush'
       tags: 1.0
-      # Dockerfile: '**/Dockerfile'
+      Dockerfile: 'pamela-soulis-project1/Dockerfile'
  
 
 
