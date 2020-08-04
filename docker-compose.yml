@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+
+  api:
+    build:
+      context: pamela-soulis-project1
+    image: proj1:1.0
+    depends_on:
+      - data
+    ports:
+      - 8080:80
+    networks:
+      - default
+    environment:
+      ConnectionStrings__pamelasoulisproject1Context: Server=tcp:data,8080;Initial Catalog=pamela-soulis-project1;User ID=sa;Password=Pass@word
+
+  data:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 8080:8080
+    networks:
+      - default
+    environment:
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: Pass@word
+
+networks:
+  default:
