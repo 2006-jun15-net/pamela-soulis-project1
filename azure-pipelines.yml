@@ -39,7 +39,7 @@ jobs:
       containerRegistry: 'project1Dockerize'
       repository: 'pamela-soulis-project1'
       command: 'buildAndPush'
-      Dockerfile: '/Documents/Revature/pamela-soulis-project1/Dockerfile'
+      Dockerfile: '~/Documents/Revature/pamela-soulis-project1/Dockerfile'
  
  
 # proj1Dockerize
