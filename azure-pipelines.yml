@@ -10,20 +10,54 @@ trigger:
     - master
     - dockerize
 
-pr:
-- master
+# The source used by the pipeline
+resources:
+- repo: self
 
-variables:
-  solutionPath: pamela-soulis-project1
+# pr:
+# - master
 
-jobs:
-- job: build_linux
-  pool:
-    vmImage: 'ubuntu-latest'
+# variables:
+#   solutionPath: pamela-soulis-project1
+
+# jobs:
+# - job: build_linux
+#   pool:
+#     vmImage: 'ubuntu-latest'
   
 
 
-  steps:
+# Variables used in the Azure Container Registry deployment
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: '<your-service-connection-number'
+  dockerfilePath: '$(Build.SourcesDirectory)/pamela-soulis-project1/Dockerfile'
+  tag: '$(Build.BuildId)'
+  
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+# Build stage to build your application and push it to a registry
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+
+ 
   
   # - task: Docker@2
   #   inputs:
@@ -35,14 +69,14 @@ jobs:
   #     tags: |
   #       $('$(Build.BuildId)')
      
-  - task: Docker@2
-    inputs:
-      containerRegistry: 'project1Dockerize'
-      repository: 'pamela-soulis-project1'
-      command: 'buildAndPush'
-      Dockerfile: '**/$(solutionPath)/Dockerfile'
+  # - task: Docker@2
+  #   inputs:
+  #     containerRegistry: 'project1Dockerize'
+  #     repository: 'pamela-soulis-project1'
+  #     command: 'buildAndPush'
+  #     Dockerfile: '**/$(solutionPath)/Dockerfile'
  
- 
+
 # proj1Dockerize
 
   # - task: Docker@2
@@ -51,51 +85,57 @@ jobs:
   #     command: 'buildAndPush'
   #     Dockerfile: '$(System.DefaultWorkingDirectory)/Dockerfile'
 
-  - task: SonarCloudPrepare@1
-    displayName: sonarcloud prepare analysis
-    inputs:
-      SonarCloud: 'sonarcloud-pamelasoulis'
-      organization: '2006-jun15-net'
-      scannerMode: 'MSBuild'
-      projectKey: '2006-jun15-net_pamela-soulis-project1'
-      projectName: 'Pamela Soulis project 1'
 
-  - script: dotnet build
-    displayName: dotnet build
 
-  - task: SonarCloudAnalyze@1
-    displayName: sonarcloud run analysis
 
-  - task: SonarCloudPublish@1
-    displayName: publish sonarcloud result
-    inputs:
-      pollingTimeoutSec: '300'
 
-  - task: DotNetCoreCLI@2
-    displayName: dotnet test
-    inputs:
-      command: 'test'
-      arguments: '-c Release --collect:"XPlat Code Coverage"'
-      testRunTitle: 'ubuntu'
 
-  - task: PublishCodeCoverageResults@1
-    displayName: publish code coverage
-    inputs:
-      codeCoverageTool: 'Cobertura'
-      summaryFileLocation: '$(Agent.TempDirectory)/*/coverage.cobertura.xml'
-      failIfCoverageEmpty: true
 
-  - script: dotnet publish -o publish
-    displayName: dotnet publish
+  # - task: SonarCloudPrepare@1
+  #   displayName: sonarcloud prepare analysis
+  #   inputs:
+  #     SonarCloud: 'sonarcloud-pamelasoulis'
+  #     organization: '2006-jun15-net'
+  #     scannerMode: 'MSBuild'
+  #     projectKey: '2006-jun15-net_pamela-soulis-project1'
+  #     projectName: 'Pamela Soulis project 1'
+
+  # - script: dotnet build
+  #   displayName: dotnet build
+
+  # - task: SonarCloudAnalyze@1
+  #   displayName: sonarcloud run analysis
+
+  # - task: SonarCloudPublish@1
+  #   displayName: publish sonarcloud result
+  #   inputs:
+  #     pollingTimeoutSec: '300'
+
+  # - task: DotNetCoreCLI@2
+  #   displayName: dotnet test
+  #   inputs:
+  #     command: 'test'
+  #     arguments: '-c Release --collect:"XPlat Code Coverage"'
+  #     testRunTitle: 'ubuntu'
+
+  # - task: PublishCodeCoverageResults@1
+  #   displayName: publish code coverage
+  #   inputs:
+  #     codeCoverageTool: 'Cobertura'
+  #     summaryFileLocation: '$(Agent.TempDirectory)/*/coverage.cobertura.xml'
+  #     failIfCoverageEmpty: true
+
+  # - script: dotnet publish -o publish
+  #   displayName: dotnet publish
     
-  - task: AzureRmWebAppDeployment@4
-    displayName: azure app service deploy
-    inputs:
-      ConnectionType: 'AzureRM'
-      azureSubscription: 'Azure subscription 1(3edca897-65af-4673-84e4-b3d1c79e363a)'
-      appType: 'webApp'
-      WebAppName: 'pamela-soulis-project1'
-      packageForLinux: '$(System.DefaultWorkingDirectory)/publish'
+  # - task: AzureRmWebAppDeployment@4
+  #   displayName: azure app service deploy
+  #   inputs:
+  #     ConnectionType: 'AzureRM'
+  #     azureSubscription: 'Azure subscription 1(3edca897-65af-4673-84e4-b3d1c79e363a)'
+  #     appType: 'webApp'
+  #     WebAppName: 'pamela-soulis-project1'
+  #     packageForLinux: '$(System.DefaultWorkingDirectory)/publish'
 
 
   # - script: |
