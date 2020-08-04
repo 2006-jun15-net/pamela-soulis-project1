@@ -30,7 +30,7 @@ resources:
 # Variables used in the Azure Container Registry deployment
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '<your-service-connection-number'
+  dockerRegistryServiceConnection: 'project1Dockerize'
   dockerfilePath: '$(Build.SourcesDirectory)/pamela-soulis-project1/Dockerfile'
   tag: '$(Build.BuildId)'
   
