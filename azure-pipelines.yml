@@ -20,7 +20,8 @@ jobs:
   pool:
     vmImage: 'ubuntu-latest'
   
-
+variables:
+  solutionPath: pamela-soulis-project1
 
   steps:
   
@@ -39,7 +40,7 @@ jobs:
       containerRegistry: 'project1Dockerize'
       repository: 'pamela-soulis-project1'
       command: 'buildAndPush'
-      Dockerfile: ~/Users/pamelasoulis/Documents/Revature/pamela-soulis-project1/Dockerfile
+      Dockerfile: '$(solutionPath)/Dockerfile'
  
  
 # proj1Dockerize
