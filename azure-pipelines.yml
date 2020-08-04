@@ -40,7 +40,7 @@ jobs:
       containerRegistry: 'project1Dockerize'
       repository: 'pamela-soulis-project1'
       command: 'buildAndPush'
-      Dockerfile: '$(solutionPath)/Dockerfile'
+      Dockerfile: '**/$(solutionPath)/Dockerfile'
  
  
 # proj1Dockerize
